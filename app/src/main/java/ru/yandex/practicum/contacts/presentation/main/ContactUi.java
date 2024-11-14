@@ -5,8 +5,17 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 
-public class ContactUi {
+public class ContactUi implements ListDiffInterface<ContactUi> {
+@Override
+    public boolean theSameAs(@NonNull ContactUi newItem) {
+        return this.hashCode() == newItem.hashCode();
+    }
+
+
+
 
     private final String name;
     private final String phone;
