@@ -4,22 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 
-public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> implements ListDiffInterface<T> {
+import java.util.Objects;
+
+public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
 
 
     @Override
     public boolean areItemsTheSame(@NonNull T oldItem, @NonNull T newItem) {
-        return false;
+        return oldItem.theSameAs(newItem);
     }
 
-    @Override
-    public boolean theSameAs(@NonNull T newItem) {
-        return this.hashCode() == newItem.hashCode();
-    }
+
 
     @Override
     public boolean areContentsTheSame(@NonNull T oldItem, @NonNull T newItem) {
-        return oldItem.equals(newItem);
+        return Objects.equals(oldItem, newItem);
     }
 
     @Nullable
